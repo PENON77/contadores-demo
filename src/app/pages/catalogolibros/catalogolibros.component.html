@@ -1,0 +1,51 @@
+<div class="card text-center">
+
+    <div class="error-box">
+        <div class="error-body text-center">
+            <h1>CATÁLOGO DE LIBROS</h1>
+            <br>
+            <br>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="input-group col-3">
+                    <span class="input-group-text" id="addon-wrapping">Libro: </span>
+                    <input type="text"  class="form-control" placeholder="Nombre del libro" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosLibro.titulo" id="nameLibro"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                    <span class="input-group-text" id="addon-wrapping">$: </span>
+                    <input type="number" class="form-control" placeholder="Costo del libro" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosLibro.precio">
+                    <button id="reload" type="button" class="btn btn-success" (click)="addBook()"><img src="../../../assets/images/icon/agregar.png"></button>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="card text-center" >
+        <table class="table">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Libro</th>
+                    <!-- <th scope="col">Sección</th> -->
+                    <th scope="col">Costo</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let books of booksRegistrados ; let i = index">
+                    <th scope="row">{{ i + 1}}</th>
+                    <td>{{ books.titulo}}</td>
+                    <td>{{ books.precio}}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-danger" (click)="deleteBook(books._id)"><img src="../../../assets/images/icon/eliminar.png"></button>
+                            <!-- <button type="button" class="btn btn-warning"><img src="../../../assets/images/icon/actualizard.png"></button> -->
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

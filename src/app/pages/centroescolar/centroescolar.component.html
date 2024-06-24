@@ -1,0 +1,214 @@
+<!-- <div class="card text-center">
+    
+    <div class="card-body">
+        
+
+
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div> -->
+<div class="card text-center">
+
+    <div class="error-box">
+        <div class="error-body text-center">
+            <h1>FUNDACIÓN EL PEÑON I.A.P </h1>
+            <br>
+            <br>
+            <h1> JONACATEPEC, MORELOS </h1>
+        </div>
+    </div>
+
+</div>
+<br>
+<div class="card text-center" >
+    <!-- <form #form='ngForm'> -->
+
+        <div class="row">
+                <label class="col-3">No. FOLIO:  {{datosCE.folio}}</label>
+            
+                <label class="col-sm-9">FECHA:  {{datee | date:'yyyy-MM-dd'}}</label>
+            
+        </div>
+    
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="addon-wrapping">Sección: </span>
+            <select class="form-select" id="datoSeccion" [(ngModel)]="datosCE.seccion" >
+            <option value="SECUNDARIA">SECUNDARIA</option>
+            <option value="BACHILLERATO">BACHILLERATO</option>
+            
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <!-- onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" -->
+            <span class="input-group-text" id="addon-wrapping">Alumno: </span>
+            <input type="text" class="form-control" placeholder="Nombre del estudiante" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.alumno" id="nombre"
+            (keyup)="searchTerm$.next($event.target.value)"
+            onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+           
+        </div>
+        <ul *ngFor="let item of listFiltered" class="list">
+            <li>
+            {{item}}
+            </li>
+        </ul>
+    
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="addon-wrapping">Concepto: </span>
+            <select class="form-select"  name="tipoConceptos" id="tipoConceptos" (change)="conceptosIf()" [(ngModel)]="datosCE.concepto">
+                <option value="EER">EER Materias</option>
+                <option value="Constancia estudios">Constancia de estudios</option>
+                <option value="Certificado estudios normal">Certificado de estudios normal</option>
+                <option value="Certificado estudios parcial">Certificado de estudios parcial</option>
+                <option value="Libros">Libros</option>
+                <option value="Otros Ingresos">Otros ingresos</option>
+                <option value="After School">After School</option>
+                </select>
+        </div>
+    
+        <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   condicional if $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
+        <div class="input-group mb-3" *ngIf="eermaterias">
+        
+            <div class="input-group mb-3" >
+                <span class="input-group-text" id="addon-wrapping">Materia 1: </span>
+                <!-- <input type="text" class="form-control" placeholder="Nombre de la materia" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.materiaUno"  (change)="getPagos()" id="materiaU"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="materiaUno" required [(ngModel)]="datosCE.materiaUno"  (change)="getPagos()" id="materiaU"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" >
+                    <option value="" selected>Selecciona Materia</option>
+                    <option [value]="item.union" *ngFor="let item of materiasAll"> {{item.union}} </option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">Materia 2: </span>
+                <!-- <input type="text" class="form-control" placeholder="Nombre de la materia" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.materiaDos" (change)="getPagos()" id="materiaD"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="materiaUno" required [(ngModel)]="datosCE.materiaDos"  (change)="getPagos()" id="materiaU"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" >
+                    <option value="" selected>Selecciona Materia</option>
+                    <option [value]="item.union" *ngFor="let item of materiasAll"> {{item.union}} </option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">Materia 3: </span>
+                <!-- <input type="text" class="form-control" placeholder="Nombre de la materia" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.materiaTres" (change)="getPagos()" id="materiaT"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="materiaUno" required [(ngModel)]="datosCE.materiaTres"  (change)="getPagos()" id="materiaU"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" >
+                    <option value="" selected>Selecciona Materia</option>
+                    <option [value]="item.union" *ngFor="let item of materiasAll"> {{item.union}} </option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">Materia 4: </span>
+                <!-- <input type="text" class="form-control" placeholder="Nombre de la materia" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.materiaCuatro" (change)="getPagos()" id="materiaC"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="materiaUno" required [(ngModel)]="datosCE.materiaCuatro"  (change)="getPagos()" id="materiaU"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" >
+                    <option value="" selected>Selecciona Materia</option>
+                    <option [value]="item.union" *ngFor="let item of materiasAll"> {{item.union}} </option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">Materia 5: </span>
+                <!-- <input type="text" class="form-control" placeholder="Nombre de la materia" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.materiaCinco" (change)="getPagos()" id="materiaCin"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="materiaUno" required [(ngModel)]="datosCE.materiaCinco"  (change)="getPagos()" id="materiaU"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" >
+                    <option value="" selected>Selecciona Materia</option>
+                    <option [value]="item.union" *ngFor="let item of materiasAll"> {{item.union}} </option>
+                </select>
+            </div>
+    
+        </div>
+
+
+
+        <div class="input-group mb-3" *ngIf="librosPagos">
+        
+            <div class="input-group mb-3" >
+                <span class="input-group-text" id="addon-wrapping">1: </span>
+                <!-- <input type="text" class="form-control" placeholder="Libros" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.libroUno"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="libroUno" required id="books" [(ngModel)]="datosCE.libroUno" (change)="getBookName()">
+                    <option value="" selected>Selecciona Libro</option>
+                    <option [value]="item.titulo" *ngFor="let item of librosAll"> {{item.titulo}} </option>
+                </select>
+                <span class="input-group-text">$</span>
+                <input type="text" style="text-align:center" class="form-control" placeholder="Precio" aria-label="Server" disabled="false" [(ngModel)]="precioLibroUno" >
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">2: </span>
+                <!-- <input type="text" class="form-control" placeholder="Libros" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.libroDos"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="libroUno" required id="books" [(ngModel)]="datosCE.libroDos" (change)="getBookName()">
+                    <option value="" selected>Selecciona Libro</option>
+                    <option [value]="item.titulo" *ngFor="let item of librosAll"> {{item.titulo}} </option>
+                </select>
+                <span class="input-group-text">$</span>
+                <input type="text"  style="text-align:center" class="form-control" placeholder="Precio" aria-label="Server" disabled="false" [(ngModel)]="precioLibroDos" >
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">3: </span>
+                <!-- <input type="text" class="form-control" placeholder="Libros" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.libroTres"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="libroUno" required id="books" [(ngModel)]="datosCE.libroTres" (change)="getBookName()">
+                    <option value="" selected>Selecciona Libro</option>
+                    <option [value]="item.titulo" *ngFor="let item of librosAll"> {{item.titulo}} </option>
+                </select>
+                <span class="input-group-text">$</span>
+                <input type="text" style="text-align:center" class="form-control" placeholder="Precio" aria-label="Server" disabled="false" [(ngModel)]="precioLibroTres">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">4: </span>
+                <!-- <input type="text" class="form-control" placeholder="Libros" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.libroCuatro"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="libroUno" required id="books" [(ngModel)]="datosCE.libroCuatro" (change)="getBookName()">
+                    <option value="" selected>Selecciona Libro</option>
+                    <option [value]="item.titulo" *ngFor="let item of librosAll"> {{item.titulo}} </option>
+                </select>
+                <span class="input-group-text">$</span>
+                <input type="text" style="text-align:center" class="form-control" placeholder="Precio" aria-label="Server"disabled="false" [(ngModel)]="precioLibroCuatro">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">5: </span>
+                <!-- <input type="text" class="form-control" placeholder="Libros" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.libroCinco"> -->
+                <select class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="libroUno" required id="books" [(ngModel)]="datosCE.libroCinco" (change)="getBookName()">
+                    <option value="" selected>Selecciona Libro</option>
+                    <option [value]="item.titulo" *ngFor="let item of librosAll"> {{item.titulo}} </option>
+                </select>
+                <span class="input-group-text">$</span>
+                <input type="text" style="text-align:center" class="form-control" placeholder="Precio" aria-label="Server" disabled="false" [(ngModel)]="precioLibroCinco" >
+            </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-primary" type="button" (click)="getPagosBook()">Calcular Total</button>
+            </div>
+    
+        </div>        
+
+
+
+        <div class="input-group mb-3" *ngIf="afterSchool">
+        
+            <div class="input-group mb-3" >
+                <span class="input-group-text" id="addon-wrapping">After School 1: </span>
+                <input type="text" class="form-control" placeholder="Nombre del taller " aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.afterUno"  id="afterU"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">After School 2: </span>
+                <input type="text" class="form-control" placeholder="Nombre del taller " aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.afterDos" id="afterD"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+            </div>
+        </div>
+
+
+        <div class="input-group mb-3" *ngIf="otrosIngresos">
+        
+            <div class="input-group mb-3" >
+                <span class="input-group-text" id="addon-wrapping">Otros Ingresos 1: </span>
+                    <textarea class="form-control" placeholder="Otros ingresos" id="floatingTextarea2" style="height: 100px" [(ngModel)]="datosCE.otrosIngresos" id="ingresos"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"></textarea>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- ################################################################################################################################### -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">Total $</span>
+            <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" [disabled]="activo" placeholder="{{constanciasPrecio}}" [(ngModel)]="datosCE.pagoTotal" onKeypress="if (event.keyCode==46 || event.keyCode==45) event.returnValue = false;">
+            <span class="input-group-text">.00</span>
+        </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" type="button" (click)="ticket()">Imprimir Ticket</button>
+        </div>
+        
+    <!-- </form> -->
+</div>

@@ -1,0 +1,75 @@
+<div class="error-box">
+    <div class="error-body text-center">
+        <h1>CORTE DE CAJA</h1>
+        <br>
+        <br>
+    </div>
+</div>
+<br>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="input-group col-3">
+                <span class="input-group-text" id="addon-wrapping">FECHA INICIO: </span>
+                <input type="date" id="redon" class="form-control" placeholder="" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="fechaInicio" >
+                <!-- <span class="input-group-text" id="addon-wrapping">FECHA FINAL: </span>
+                <input type="date" class="form-control" placeholder="" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="fechaFinal"> -->
+                
+                    <span class="input-group-text" id="addon-wrapping">Concepto: </span>
+                    <select class="form-select"  name="tipoConceptos" id="tipoConceptos" [(ngModel)]="findConcepto">
+                        <option value="EER">EER Materias</option>
+                        <option value="Constancia estudios">Constancia de estudios</option>
+                        <option value="Certificado estudios normal">Certificado de estudios normal</option>
+                        <option value="Certificado estudios parcial">Certificado de estudios parcial</option>
+                        <option value="Libros">Libros</option>
+                        <option value="Otros Ingresos">Otros ingresos</option>
+                        <option value="After School">After School</option>
+                        </select>
+              
+
+                <button id="reload" type="button" class="btn btn-outline-info"(click)="buscarFechas()" ><img src="../../../assets/images/icon/buscar.png"></button>
+            </div>
+    </div>
+
+
+    </div>
+</div>
+
+<div class="card text-center" >
+    <table class="table">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Folio</th>
+                <th scope="col">Concepto</th>
+                <th scope="col">Importe</th>
+                <th scope="col">Sección</th>
+                <th scope="col">Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let item of allFechas; let i = index">
+                <th scope="row">{{ i + 1}}</th>
+                <td>{{item.fecha}}</td>
+                <td>{{item.folio}}</td>
+                <td>{{item.concepto}}</td>
+                <td>{{item.pagoTotal}}</td>
+                <td>{{item.seccion}}</td>
+                <td>{{item.contador}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="input-group mb-3">
+    <span class="input-group-text">Total $</span>
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" disabled="false" placeholder="Corte total" [(ngModel)]="corteTotal">
+    <span class="input-group-text">.00</span>
+</div>
+
+<div class="input-group mb-3">
+    <button class="btn btn-warning form-control text-center" type="button" (click)="calcularTotal()">Calcular Total</button>
+    <button class="btn btn-info form-control" type="button" id="im"  (click)="PDF()">Imprimir</button>
+</div>

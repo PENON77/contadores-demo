@@ -40,6 +40,7 @@ public datosCE={
   pagoTotal: 0
 };
 public search="";
+public findEstudent="";
 public activo =true;
 public notaPDF :any=[];
 public librosAll :any=[];
@@ -334,6 +335,7 @@ searchTerm$ = new Subject<string>();
       showConfirmButton: false,
       timer: 1500
     });
+    this.obtenerFolio();
       } else if (result.isDenied) {
         Swal.fire({
           icon: "info",
@@ -347,6 +349,7 @@ searchTerm$ = new Subject<string>();
     this.reciboPDF();
     this.datosCE.concepto="";
     this.datosCE.alumno ="";
+    this.findEstudent ="";
     this.datosCE.seccion ="";
     this.eermaterias = false;
     this.librosPagos = false;

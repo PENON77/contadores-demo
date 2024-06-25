@@ -41,16 +41,21 @@
         <div class="input-group mb-3">
             <!-- onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" -->
             <span class="input-group-text" id="addon-wrapping">Alumno: </span>
-            <input type="text" class="form-control" placeholder="Nombre del estudiante" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="datosCE.alumno" id="nombre"
+            <select class="form-select"  [(ngModel)]="datosCE.alumno">
+                <option [value]="item" *ngFor="let item of listFiltered"> {{item}} </option>
+            </select>
+            
+            <input type="text" class="form-control" placeholder="Buscar nombre del estudiante"  aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="findEstudent" id="nombre"
             (keyup)="searchTerm$.next($event.target.value)"
             onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
            
         </div>
-        <ul *ngFor="let item of listFiltered" class="list">
+        <!-- <ul *ngFor="let item of listFiltered" class="list">
             <li>
             {{item}}
             </li>
-        </ul>
+        </ul> -->
+        
     
         <div class="input-group mb-3">
             <span class="input-group-text" id="addon-wrapping">Concepto: </span>

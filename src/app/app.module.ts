@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AlumnosPipe } from './alumnos.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -15,7 +16,7 @@ import { NofoundpageComponent } from './pages/nofoundpage/nofoundpage.component'
 import { PagesComponent } from './pages/pages.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { AlumnosPipe } from './alumnos.pipe';
+
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { AlumnosPipe } from './alumnos.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
